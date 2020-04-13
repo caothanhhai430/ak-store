@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MergeJsonWebpackPlugin = require('merge-jsons-webpack-plugin');
 
 const projectDir = path.join(__dirname, '../../ak');
 
@@ -28,7 +29,16 @@ module.exports = async config => {
       to: 'manifest.webapp'
     }
   ]);
-  config.plugins.push(copyPlugin);
+  const i18nJSON = new MergeJsonWebpackPlugin({
+    debug: true,
+    output: {
+      groupBy: [
+        { pattern: './src/i18n/vi/*.json', fileName: './assets/i18n/vi.json' },
+        { pattern: './src/i18n/en/*.json', fileName: './assets/i18n/en.json' },
+      ]
+    }
+  });
+  config.plugins = config.plugins.concat([copyPlugin, i18nJSON]);
 
   return config;
 };
