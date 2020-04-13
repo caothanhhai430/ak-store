@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@akfe/*": ["apps/frontend/src/app/*"]
+      "@akfe/*": ["apps/frontend/src/app/*"],
+      "@akfe/env/*": ["apps/frontend/src/environments/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
