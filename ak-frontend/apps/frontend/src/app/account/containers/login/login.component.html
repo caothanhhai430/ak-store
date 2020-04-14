@@ -1,3 +1,5 @@
+<h2 class="login-title">{{ 'login.title' | transloco }}</h2>
+
 <form
   nz-form
   [formGroup]="validateForm"
@@ -41,7 +43,7 @@
   <nz-form-item>
     <nz-form-control>
       <button nz-button class="login-form-button" [nzType]="'primary'">
-        Log in
+        {{ 'login.title' | transloco }}
       </button>
       Or
       <a routerLink="/account/register">Register now!</a>

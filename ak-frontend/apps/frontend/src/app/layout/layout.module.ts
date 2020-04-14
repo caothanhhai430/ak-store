@@ -1,8 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavLayoutComponent } from './components/nav-layout/nav-layout.component';
-import { NzIconModule, NzLayoutModule, NzMenuModule } from 'ng-zorro-antd';
+import {
+  NzIconModule,
+  NzLayoutModule,
+  NzMenuModule,
+  NzSelectModule
+} from 'ng-zorro-antd';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [NavLayoutComponent],
@@ -12,7 +18,9 @@ import { RouterModule } from '@angular/router';
     NzLayoutModule,
     NzMenuModule,
     RouterModule,
-    NzIconModule
+    NzIconModule,
+    NzSelectModule,
+    FormsModule
   ]
 })
 export class LayoutModule {}

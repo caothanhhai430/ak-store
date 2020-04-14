@@ -54,13 +54,28 @@
   <nz-layout>
     <nz-header>
       <div class="app-header">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-          <i
-            class="trigger"
-            nz-icon
-            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-          ></i>
-        </span>
+        <div class="header-trigger-wrapper">
+          <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+            <i
+              class="trigger"
+              nz-icon
+              [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            ></i>
+          </span>
+        </div>
+        <span class="spacer"></span>
+        <div class="languages">
+          <nz-select
+            [ngModel]="activeLanguage"
+            (ngModelChange)="selectLanguage.emit($event)"
+          >
+            <nz-option
+              *ngFor="let language of languages"
+              [nzValue]="language.key"
+              [nzLabel]="language.label"
+            ></nz-option>
+          </nz-select>
+        </div>
       </div>
     </nz-header>
     <nz-content>

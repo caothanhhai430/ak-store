@@ -67,6 +67,11 @@ nz-header {
   padding: 0;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  display: flex;
+
+  .spacer {
+    margin-left: auto;
+  }
 }
 
 nz-content {
@@ -77,4 +82,8 @@ nz-content {
   padding: 24px;
   background: #fff;
   height: 100%;
+}
+
+.languages {
+  padding: 0 1.5rem;
 }

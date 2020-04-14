@@ -1,3 +1,7 @@
-<ak-nav-layout>
+<ak-nav-layout
+  [languages]="languages"
+  [activeLanguage]="activeLanguage$ | async"
+  (selectLanguage)="onSelectLanguage($event)"
+>
   <router-outlet></router-outlet>
 </ak-nav-layout>

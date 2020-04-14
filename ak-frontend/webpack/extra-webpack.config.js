@@ -34,7 +34,7 @@ module.exports = async config => {
     output: {
       groupBy: [
         { pattern: './src/i18n/vi/*.json', fileName: './assets/i18n/vi.json' },
-        { pattern: './src/i18n/en/*.json', fileName: './assets/i18n/en.json' },
+        { pattern: './src/i18n/en/*.json', fileName: './assets/i18n/en.json' }
       ]
     }
   });

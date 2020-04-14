@@ -12,6 +12,7 @@ import {
 } from 'ng-zorro-antd';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivateComponent } from './containers/activate/activate.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent, ActivateComponent],
@@ -22,7 +23,8 @@ import { ActivateComponent } from './containers/activate/activate.component';
     ReactiveFormsModule,
     NzInputModule,
     NzCheckboxModule,
-    NzButtonModule
+    NzButtonModule,
+    TranslocoModule
   ]
 })
 export class AccountModule {}
