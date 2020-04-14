@@ -1,42 +1,39 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable, of, Subject } from "rxjs";
-import { catchError, shareReplay, tap } from "rxjs/operators";
-import { LanguageService } from "@akfe/core/services/language.service";
-import { SERVER_API_URL } from "@akfe/env/environment";
-import { Account } from "../models/account.model";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, shareReplay, tap } from 'rxjs/operators';
+import { LanguageService } from '@akfe/core/services/language.service';
+import { Account } from '../models/account.model';
+import { AccountService } from '@akfe/account/services/account.service';
 
 @Injectable({ providedIn: 'root' })
-export class AccountService {
+export class AuthService {
   private userIdentity: Account;
   private authenticated = false;
-  private authenticationState = new Subject<any>();
+  private authenticationState = new BehaviorSubject<Account | null>(null);
   private accountCache$: Observable<Account>;
+
+  get authenticationState$(): Observable<Account | null> {
+    return this.authenticationState.asObservable();
+  }
 
   constructor(
     private languageService: LanguageService,
-    private http: HttpClient
+    private accountService: AccountService
   ) {}
 
-  fetch(): Observable<Account> {
-    return this.http.get<Account>(SERVER_API_URL + '/api/account');
-  }
-
-  save(account: Account): Observable<Account> {
-    return this.http.post<Account>(SERVER_API_URL + '/api/account', account);
-  }
-
-  authenticate(identity) {
+  authenticate(identity: Account) {
     this.userIdentity = identity;
-    this.authenticated = identity !== null;
+    this.authenticated = identity != null;
     this.authenticationState.next(this.userIdentity);
   }
 
   hasAnyAuthority(authorities: string[] | string): boolean {
     if (
-      !this.authenticated ||
-      !this.userIdentity ||
-      !this.userIdentity.authorities
+      !(
+        this.authenticated &&
+        this.userIdentity &&
+        this.userIdentity.authorities
+      )
     ) {
       return false;
     }
@@ -56,7 +53,7 @@ export class AccountService {
     }
 
     if (!this.accountCache$) {
-      this.accountCache$ = this.fetch().pipe(
+      this.accountCache$ = this.accountService.fetch().pipe(
         catchError(() => {
           return of(null);
         }),
@@ -89,11 +86,12 @@ export class AccountService {
   }
 
   isIdentityResolved(): boolean {
-    return this.userIdentity !== undefined;
+    return this.userIdentity != null;
   }
 
-  getAuthenticationState(): Observable<any> {
-    return this.authenticationState.asObservable();
+  logout() {
+    this.authenticate(null);
+    this.accountCache$ = null;
   }
 
   getImageUrl(): string {

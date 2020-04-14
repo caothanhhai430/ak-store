@@ -9,10 +9,11 @@ import {
 } from 'ng-zorro-antd';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { UnauthorizedNavLayoutComponent } from './components/unauthorized-nav-layout/unauthorized-nav-layout.component';
 
 @NgModule({
-  declarations: [NavLayoutComponent],
-  exports: [NavLayoutComponent],
+  declarations: [NavLayoutComponent, UnauthorizedNavLayoutComponent],
+  exports: [NavLayoutComponent, UnauthorizedNavLayoutComponent],
   imports: [
     CommonModule,
     NzLayoutModule,

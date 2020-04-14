@@ -1,8 +1,8 @@
-import { ProcessStatus } from "./enumerations";
-import { IInvoiceLine } from "./invoice-line.model";
-import { ICustomer } from "./customer.model";
-import { ITerms } from "./terms.model";
-import { IEmployee } from "./employee.model";
+import { ProcessStatus } from './enumerations';
+import { IInvoiceLine } from './invoice-line.model';
+import { ICustomer } from './customer.model';
+import { ITerms } from './terms.model';
+import { IEmployee } from './employee.model';
 
 export interface IInvoice {
   id?: number;

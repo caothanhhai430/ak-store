@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { IconsProviderModule } from './icons-provider.module';
@@ -15,8 +14,28 @@ import { CoreModule } from './core/core.module';
 import { LayoutModule } from '@akfe/layout/layout.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
+import { JWT_OPTIONS, JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
+import { AuthJwtService } from '@akfe/core/services/auth-jwt.service';
 
 registerLocaleData(en);
+
+type Options = Omit<JwtModuleOptions, 'jwtOptionsProvider'>;
+type ConfigOption = Options['config'];
+
+export function jwtOptionsFactory(
+  authJwtService: AuthJwtService
+): ConfigOption {
+  return {
+    tokenGetter: () => {
+      return authJwtService.getToken();
+    },
+    blacklistedRoutes: [
+      /.*api\/authenticate/,
+      /.*api\/register/,
+      /.*api\/activate/
+    ]
+  };
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,7 +51,14 @@ registerLocaleData(en);
     LayoutModule,
     AppRoutingModule,
     HttpClientModule,
-    TranslocoRootModule
+    TranslocoRootModule,
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+        deps: [AuthJwtService]
+      }
+    })
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

@@ -1,7 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { LanguageSelect } from "@akfe/core/models/language";
-import { LanguageService } from "@akfe/core/services/language.service";
-import { CookieService } from "ngx-cookie-service";
+import { Component, OnInit } from '@angular/core';
+import { LanguageSelect } from '@akfe/core/models/language';
+import { LanguageService } from '@akfe/core/services/language.service';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from '@akfe/core/services/auth.service';
+import { AuthJwtService } from '@akfe/core/services/auth-jwt.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ak-root',
@@ -21,20 +24,39 @@ export class AppComponent implements OnInit {
   ];
   se;
   activeLanguage$ = this.languageService.language$;
+  authenticationState$ = this.authService.authenticationState$;
 
   constructor(
     private languageService: LanguageService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private authService: AuthService,
+    private authJwtService: AuthJwtService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.languageService.initialize();
-    const cookieValue = this.cookieService.get('Test');
-    console.log(cookieValue);
+    this.authJwtService.initialize();
+
+    if (this.authJwtService.getToken()) {
+      this.authService.identity(true).subscribe({
+        next: value => {
+          console.log('Authenticated');
+        },
+        error: err => {
+          console.log(err);
+        }
+      });
+    }
   }
 
   onSelectLanguage(langKey: string) {
     this.languageService.setActiveLang(langKey);
-    this.cookieService.set('Test', langKey, null);
+  }
+
+  doLogout() {
+    this.authService.logout();
+    this.authJwtService.logout();
+    this.router.navigateByUrl('/');
   }
 }

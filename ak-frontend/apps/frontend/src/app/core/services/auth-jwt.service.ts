@@ -1,20 +1,24 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { CookieService } from "ngx-cookie-service";
-import { JwtHelperService } from "@auth0/angular-jwt";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 const jwtHelperService = new JwtHelperService();
 
 @Injectable({ providedIn: 'root' })
-export class AuthServerProvider {
+export class AuthJwtService {
   constructor(private http: HttpClient, private cookieService: CookieService) {}
   private accessToken: string = null;
 
   initialize() {
     const token = this.cookieService.get('authenticationToken');
     if (token) {
-      this.accessToken = token;
+      const isExpired = jwtHelperService.isTokenExpired(token, 10);
+      if (isExpired) {
+        this.cookieService.delete('authenticationToken');
+      } else {
+        this.accessToken = token;
+      }
     }
   }
 
@@ -32,12 +36,8 @@ export class AuthServerProvider {
     }
   }
 
-  logout(): Observable<void> {
-    return new Observable(observer => {
-      this.cookieService.delete('authenticationToken');
-      this.accessToken = null;
-      observer.next();
-      observer.complete();
-    });
+  logout(): void {
+    this.cookieService.delete('authenticationToken');
+    this.accessToken = null;
   }
 }

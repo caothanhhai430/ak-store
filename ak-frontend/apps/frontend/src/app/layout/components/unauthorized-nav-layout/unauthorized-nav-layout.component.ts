@@ -2,18 +2,17 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { LanguageSelect } from '@akfe/core/models/language';
 
 @Component({
-  selector: 'ak-nav-layout',
-  templateUrl: './nav-layout.component.html',
-  styleUrls: ['./nav-layout.component.scss']
+  selector: 'ak-unauthorized-nav-layout',
+  templateUrl: './unauthorized-nav-layout.component.html',
+  styleUrls: ['./unauthorized-nav-layout.component.scss']
 })
-export class NavLayoutComponent implements OnInit {
+export class UnauthorizedNavLayoutComponent implements OnInit {
   @Input()
   isCollapsed = false;
 
   @Input() languages: LanguageSelect[] = [];
-  @Input() activeLanguage: string = undefined;
   @Output() selectLanguage = new EventEmitter<string>();
-  @Output() logout = new EventEmitter<void>();
+  @Input() activeLanguage: string = undefined;
 
   constructor() {}
 

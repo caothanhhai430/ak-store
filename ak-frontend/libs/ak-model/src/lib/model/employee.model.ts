@@ -1,5 +1,5 @@
-import { IInvoice } from "./invoice.model";
-import { IDepartment } from "./department.model";
+import { IInvoice } from './invoice.model';
+import { IDepartment } from './department.model';
 
 export interface IEmployee {
   id?: number;

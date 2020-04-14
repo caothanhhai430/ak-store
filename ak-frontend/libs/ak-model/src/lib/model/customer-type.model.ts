@@ -1,4 +1,4 @@
-import { ICustomer } from "./customer.model";
+import { ICustomer } from './customer.model';
 
 export interface ICustomerType {
   id?: number;

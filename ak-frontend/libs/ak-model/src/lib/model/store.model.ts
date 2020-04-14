@@ -1,4 +1,4 @@
-import { IItem } from "./item.model";
+import { IItem } from './item.model';
 
 export interface IStore {
   id?: number;

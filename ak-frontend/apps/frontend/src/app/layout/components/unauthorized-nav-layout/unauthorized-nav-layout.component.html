@@ -24,25 +24,15 @@
           <li nz-menu-item nzMatchRouter>
             <a routerLink="/welcome">Welcome</a>
           </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/account/profile">Profile</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a>Workplace</a>
-          </li>
-        </ul>
-      </li>
-      <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a>Basic Form</a>
-          </li>
         </ul>
       </li>
       <li nz-submenu nzOpen nzTitle="Account" nzIcon="login">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a (click)="logout.emit()">Logout</a>
+            <a routerLink="/account/login">Login</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/account/register">Register</a>
           </li>
         </ul>
       </li>

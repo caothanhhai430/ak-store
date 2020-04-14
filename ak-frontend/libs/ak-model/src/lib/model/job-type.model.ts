@@ -1,4 +1,4 @@
-import { IJobs } from "./jobs.model";
+import { IJobs } from './jobs.model';
 
 export interface IJobType {
   id?: number;

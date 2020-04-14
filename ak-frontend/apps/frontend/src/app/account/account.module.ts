@@ -13,9 +13,16 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivateComponent } from './containers/activate/activate.component';
 import { TranslocoModule } from '@ngneat/transloco';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { ProfileComponent } from './containers/profile/profile.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, ActivateComponent],
+  declarations: [
+    LoginComponent,
+    RegisterComponent,
+    ActivateComponent,
+    ProfileComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(ROUTES),
@@ -24,7 +31,8 @@ import { TranslocoModule } from '@ngneat/transloco';
     NzInputModule,
     NzCheckboxModule,
     NzButtonModule,
-    TranslocoModule
+    TranslocoModule,
+    NzNotificationModule
   ]
 })
 export class AccountModule {}

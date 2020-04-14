@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpResponse } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { SERVER_API_URL } from "@akfe/env/environment";
-import { IUser } from "@akfe/core/models/user.model";
-import { createRequestOption } from "@akfe/shared/utils/request-util";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { SERVER_API_URL } from '@akfe/env/environment';
+import { IUser } from '@akfe/core/models/user.model';
+import { createRequestOption } from '@akfe/shared/utils/request-util';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {

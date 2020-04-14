@@ -1,4 +1,4 @@
-import { IEmployee } from "./employee.model";
+import { IEmployee } from './employee.model';
 
 export interface IDepartment {
   id?: number;

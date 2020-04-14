@@ -1,4 +1,4 @@
-import { ICompany } from "./company.model";
+import { ICompany } from './company.model';
 
 export interface IProvince {
   id?: number;

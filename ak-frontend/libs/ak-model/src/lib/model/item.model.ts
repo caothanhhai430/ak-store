@@ -1,8 +1,8 @@
-import { ItemType, PriceMethod, VATTax } from "./enumerations";
-import { IInvoiceLine } from "./invoice-line.model";
-import { IUnit } from "./unit.model";
-import { IItemGroup } from "./item-group.model";
-import { IStore } from "./store.model";
+import { ItemType, PriceMethod, VATTax } from './enumerations';
+import { IInvoiceLine } from './invoice-line.model';
+import { IUnit } from './unit.model';
+import { IItemGroup } from './item-group.model';
+import { IStore } from './store.model';
 
 export interface IItem {
   id?: number;

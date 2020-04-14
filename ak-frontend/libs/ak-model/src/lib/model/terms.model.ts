@@ -1,5 +1,5 @@
-import { ICustomer } from "./customer.model";
-import { IInvoice } from "./invoice.model";
+import { ICustomer } from './customer.model';
+import { IInvoice } from './invoice.model';
 
 export interface ITerms {
   id?: number;

@@ -1,5 +1,5 @@
-import { IIndustry } from "./industry.model";
-import { IProvince } from "./province.model";
+import { IIndustry } from './industry.model';
+import { IProvince } from './province.model';
 
 export interface ICompany {
   id?: number;

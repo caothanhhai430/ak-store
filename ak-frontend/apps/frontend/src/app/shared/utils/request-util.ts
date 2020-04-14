@@ -1,4 +1,4 @@
-import { HttpParams } from "@angular/common/http";
+import { HttpParams } from '@angular/common/http';
 
 export const createRequestOption = (req?: {
   [key: string]: any;

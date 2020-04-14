@@ -1,4 +1,4 @@
-import { Injectable, isDevMode } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
@@ -6,17 +6,17 @@ import {
   Router,
   RouterStateSnapshot,
   UrlTree
-} from "@angular/router";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
-import { AccountService } from "@akfe/core/services/account.service";
-import { StateStorageService } from "@akfe/core/services/state-storage.service";
+} from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AuthService } from '@akfe/core/services/auth.service';
+import { StateStorageService } from '@akfe/core/services/state-storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class UserRouteAccessGuard implements CanActivate, CanActivateChild {
   constructor(
     private router: Router,
-    private accountService: AccountService,
+    private accountService: AuthService,
     private stateStorageService: StateStorageService
   ) {}
 
@@ -46,24 +46,21 @@ export class UserRouteAccessGuard implements CanActivate, CanActivateChild {
   checkLogin(authorities: string[], url: string): Observable<boolean> {
     return this.accountService.identity().pipe(
       map(account => {
-        if (!authorities || authorities.length === 0) {
-          return true;
-        }
-
         if (account) {
+          if (!authorities || authorities.length === 0) {
+            return true;
+          }
           const hasAnyAuthority = this.accountService.hasAnyAuthority(
             authorities
           );
           if (hasAnyAuthority) {
             return true;
           }
-          if (isDevMode()) {
-            console.error(
-              'User has not any of required authorities: ',
-              authorities
-            );
-          }
-          this.router.navigate(['accessdenied']);
+          console.error(
+            'User has not any of required authorities: ',
+            authorities
+          );
+          this.router.navigate(['/access-denied']);
           return false;
         }
 

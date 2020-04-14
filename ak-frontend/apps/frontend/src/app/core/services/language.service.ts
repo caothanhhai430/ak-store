@@ -26,6 +26,15 @@ export class LanguageService {
     if (langKey) {
       this.translocoService.setActiveLang(langKey);
     }
+    this.translocoService.selectTranslation().subscribe({
+      next: () => {
+        console.log('Load language done!');
+      },
+      error: err => {
+        console.log('Load language fail!');
+        console.error(err);
+      }
+    });
   }
 
   setActiveLang(lang: string) {

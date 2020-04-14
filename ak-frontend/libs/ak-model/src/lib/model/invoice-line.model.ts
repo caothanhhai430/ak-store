@@ -1,6 +1,6 @@
-import { ProcessStatus } from "./enumerations";
-import { IInvoice } from "./invoice.model";
-import { IItem } from "./item.model";
+import { ProcessStatus } from './enumerations';
+import { IInvoice } from './invoice.model';
+import { IItem } from './item.model';
 
 export interface IInvoiceLine {
   id?: number;

@@ -1,6 +1,6 @@
-import { IInvoice } from "./invoice.model";
-import { ICustomerType } from "./customer-type.model";
-import { ITerms } from "./terms.model";
+import { IInvoice } from './invoice.model';
+import { ICustomerType } from './customer-type.model';
+import { ITerms } from './terms.model';
 
 export interface ICustomer {
   id?: number;
