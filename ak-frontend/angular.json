@@ -147,6 +147,32 @@
           }
         }
       }
+    },
+    "ak-model": {
+      "root": "libs/ak-model",
+      "sourceRoot": "libs/ak-model/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ak-model/tsconfig.lib.json",
+              "libs/ak-model/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ak-model/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ak-model/jest.config.js",
+            "tsConfig": "libs/ak-model/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

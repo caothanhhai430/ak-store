@@ -43,6 +43,7 @@
     "bootstrap": "^4.4.1",
     "core-js": "^2.5.4",
     "ng-zorro-antd": "^9.0.0-beta.3",
+    "ngx-cookie-service": "^3.0.4",
     "rxjs": "~6.5.4",
     "zone.js": "^0.10.2"
   },

@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@akfe/*": ["apps/frontend/src/app/*"],
-      "@akfe/env/*": ["apps/frontend/src/environments/*"]
+      "@akfe/env/*": ["apps/frontend/src/environments/*"],
+      "@akfe/ak-model": ["libs/ak-model/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,10 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { ROUTES } from '@akfe/core/constants/routes';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
+import { ROUTES } from "@akfe/core/constants/routes";
+import { CookieService } from "ngx-cookie-service";
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, RouterModule.forChild(ROUTES)]
+  imports: [CommonModule, RouterModule.forChild(ROUTES)],
+  providers: [CookieService]
 })
 export class CoreModule {}
